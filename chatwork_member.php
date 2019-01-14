@@ -5,9 +5,14 @@
  * Date: 2019-01-14
  * Time: 02:22
  */
-//取得したAPIトークンを入れる
-$token = "***************";
-$room_id = "***************";
+require './vendor/autoload.php';
+
+//.envの保存場所指定（カレントに設定）
+$dotenv = Dotenv\Dotenv::create(__DIR__);
+$dotenv->load();
+
+$token   = getenv('TOKEN');
+$room_id = getenv('ROOM');
 
 // ヘッダ
 header("Content-type: text/html; charset=utf-8");
