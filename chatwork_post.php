@@ -15,11 +15,15 @@ $token   = getenv('TOKEN');
 $room_id = getenv('ROOM');
 
 // ヘッダ
+header('Access-Control-Allow-Origin: *');
 header("Content-type: text/html; charset=utf-8");
 
-$params = [
-    "body" => "PHPからテスト投稿"
-];
+//$test = $this->request->data('body');
+$test = ['body' => $_POST['body']];
+
+//$params = [
+//    "body" => 'a'
+//];
 
 // cURLでPOST
 $ch = curl_init();
@@ -30,7 +34,7 @@ $post_opt = [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_SSL_VERIFYPEER => false,
     CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => http_build_query($params, '', '&')
+    CURLOPT_POSTFIELDS => http_build_query($test, '', '&')
 ];
 curl_setopt_array( $ch, $post_opt );
 
